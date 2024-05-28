@@ -10,6 +10,14 @@ passport.use(new GoogleStrategy({
     passReqToCallback   : true
   },
   function(request, accessToken, refreshToken, profile, done) {
-    return done(null, user);
+    return done(null, profile);
   }
+  
 ));
+passport.serializeUser(function(user, done) {
+    done(null, user);
+  });
+  
+  passport.deserializeUser(function(user, done) {
+    done(null, user);
+  });
