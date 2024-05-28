@@ -46,6 +46,11 @@ app.get("/auth/google/failure", (req, res) => {
   res.send(`Hey There, Some Thing went Wrong. Try Later!`);
 });
 
+app.get("/auth/logout", (req, res) => {
+  req.session.destroy;
+  res.redirect("/");
+});
+
 port = process.env.PORT;
 app.listen(port, () => {
   console.log(`app is Running on ${port}`);
