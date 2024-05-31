@@ -39,17 +39,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'index.html'));
 });
 
-app.get(
-  '/auth/google',
-  passport.authenticate('google', { scope: ['email', 'profile'] })
+app.get('/auth/google',passport.authenticate('google', { scope: ['email', 'profile'] })
 );
 
-app.get(
-  '/auth/google/callback',
-  passport.authenticate('google', {
-    successRedirect: '/auth/home',
-    failureRedirect: '/auth/google/failure',
-  })
+app.get('/auth/google/callback',passport.authenticate('google', {successRedirect: '/auth/home',failureRedirect: '/auth/google/failure',})
 );
 
 app.get('/auth/home', isLogged, (req, res) => {
