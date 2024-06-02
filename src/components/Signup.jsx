@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
-function Signup({handle}){
+import { Link } from 'react-router-dom';
+function Signup(){
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -52,7 +52,7 @@ function Signup({handle}){
         />
       </div>
       <button type="submit">Signup</button>
-      <p>I already have an account! <span className='linki' onClick={handle}>Login Now</span></p>
+      <p>I already have an account!<Link to="/home"> Login Now</Link></p>
       <p>
       </p>
     </form>

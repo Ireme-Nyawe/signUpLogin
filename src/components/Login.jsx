@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 
 
-function Login({handle}) {
+function Login() {
   
   const [formData, setFormData] = useState({
     email: "",
