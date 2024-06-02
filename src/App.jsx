@@ -1,25 +1,15 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-const App = () => {
-  const [option, setOption] = useState("login");
-  function handleNavigateLogin() {
-    setOption("login");
-  }
-  function handleNavigateSignup() {
-    setOption("signup");
-  }
-
-  return (
-    <>
-      <h2>Here We Goo</h2>
-      {option == "login" ? (
-        <Login handle={handleNavigateSignup}></Login>
-      ) : (
-        <Signup handle={handleNavigateLogin}></Signup>
-      )}
-    </>
-  );
-};
+const App = () => (
+  <Router>
+    <Routes>
+      <Route path="/home" element={<Login></Login>} />
+      <Route path="/signup" element={<Signup></Signup>} />
+      {/* Add other routes as needed */}
+    </Routes>
+  </Router>
+);
 
 export default App;

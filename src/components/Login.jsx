@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+
 
 
 function Login({handle}) {
@@ -59,7 +60,7 @@ function Login({handle}) {
         />
       </div>
       <button type="submit">Login</button>
-      <p>I don't have an account! <span className='linki' onClick={handle}>Signup Now</span></p>
+      <p>I don't have an account!<Link to="/signup"> Signup Now</Link></p>
       <p>
       </p>
       <span className='linki' onClick={handleGoogle}>Connect With Google</span>
