@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 function Login({handle}) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  
+  const handleGoogle = ()=>{
+    window.open(`http://localhost:7000/auth/google`, '_self');
+  }
   function handleFormData(e) {
     const { name, value } = e.target;
     setFormData((data) => {
@@ -55,6 +56,7 @@ function Login({handle}) {
       <p>I don't have an account! <span className='linki' onClick={handle}>Signup Now</span></p>
       <p>
       </p>
+      <span className='linki' onClick={handleGoogle}>Connect With Google</span>
     </form>
   );
 };
