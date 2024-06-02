@@ -19,10 +19,11 @@ function Signup(){
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      // const response = await axios.post('/api/Signup', formData);
-      // Handle successful Signup
-      // console.log(response.data);
-      console.log(formData);
+      const response = await axios.post('http://localhost:7000/users/signup', formData);
+      const res = response.data;
+      if(res.success){
+        alert("user added");
+      }
     } catch (error) {
       console.error('Error logging in:', error);
     }
