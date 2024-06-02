@@ -1,26 +1,27 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 function Login() {
   const location = useLocation();
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const token = params.get('token');
+    const token = params.get("token");
 
     if (token) {
-      console.log('Token found:', token);    }
+      localStorage.setItem('token',token);
+      window.open('/home','_self');
+    }
   }, [location]);
-  
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const handleGoogle = ()=>{
-    window.open(`http://localhost:7000/auth/google`, '_self');
-  }
-
+  const handleGoogle = () => {
+    window.open(`http://localhost:7000/auth/google`, "_self");
+  };
 
   function handleFormData(e) {
     const { name, value } = e.target;
@@ -29,25 +30,25 @@ function Login() {
     });
     console.log(formData);
   }
-  
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:7000/users/signin', formData);
-      const {token}=response.data;
-      if(token){
-        localStorage.setItem('token',token);
-      window.open('/home','_self');
-      }
-      else{
+      const response = await axios.post(
+        "http://localhost:7000/users/signin",
+        formData
+      );
+      const { token } = response.data;
+      if (token) {
+        localStorage.setItem("token", token);
+        window.open("/home", "_self");
+      } else {
         alert("Invalid Credentials");
       }
     } catch (error) {
-      console.error('Error logging in:', error);
+      console.error("Error logging in:", error);
     }
   };
-  
 
   return (
     <form onSubmit={handleLogin}>
@@ -73,12 +74,15 @@ function Login() {
         />
       </div>
       <button type="submit">Login</button>
-      <p>I don't have an account!<Link to="/signup"> Signup Now</Link></p>
       <p>
+        I don't have an account!<Link to="/signup"> Signup Now</Link>
       </p>
-      <span className='linki' onClick={handleGoogle}>Connect With Google</span>
+      <p></p>
+      <span className="linki" onClick={handleGoogle}>
+        Connect With Google
+      </span>
     </form>
   );
-};
+}
 
 export default Login;
