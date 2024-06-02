@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
 
 function Login({handle}) {
+  
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -8,6 +11,8 @@ function Login({handle}) {
   const handleGoogle = ()=>{
     window.open(`http://localhost:7000/auth/google`, '_self');
   }
+
+
   function handleFormData(e) {
     const { name, value } = e.target;
     setFormData((data) => {
@@ -28,6 +33,7 @@ function Login({handle}) {
       console.error('Error logging in:', error);
     }
   };
+  
 
   return (
     <form onSubmit={handleLogin}>
