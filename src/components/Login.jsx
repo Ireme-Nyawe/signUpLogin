@@ -1,9 +1,17 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-
-
 function Login() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const token = params.get('token');
+
+    if (token) {
+      console.log('Token found:', token);    }
+  }, [location]);
   
   const [formData, setFormData] = useState({
     email: "",
@@ -26,10 +34,15 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      // const response = await axios.post('/api/login', formData);
-      // Handle successful login
-      // console.log(response.data);
-      console.log(formData);
+      const response = await axios.post('http://localhost:7000/users/signin', formData);
+      const {token}=response.data;
+      if(token){
+        localStorage.setItem('token',token);
+      window.open('/home','_self');
+      }
+      else{
+        alert("Invalid Credentials");
+      }
     } catch (error) {
       console.error('Error logging in:', error);
     }

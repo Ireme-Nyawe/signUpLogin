@@ -52,7 +52,7 @@ function Signup(){
         />
       </div>
       <button type="submit">Signup</button>
-      <p>I already have an account!<Link to="/home"> Login Now</Link></p>
+      <p>I already have an account!<Link to="/login"> Login Now</Link></p>
       <p>
       </p>
     </form>

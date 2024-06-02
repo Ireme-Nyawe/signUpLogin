@@ -5,7 +5,7 @@ import Signup from "./components/Signup";
 const App = () => (
   <Router>
     <Routes>
-      <Route path="/home" element={<Login></Login>} />
+      <Route path="/login" element={<Login></Login>} />
       <Route path="/signup" element={<Signup></Signup>} />
       {/* Add other routes as needed */}
     </Routes>
